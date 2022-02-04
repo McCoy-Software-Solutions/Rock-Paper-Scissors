@@ -6,7 +6,9 @@ red = (200,0,0)
 green = (0,200,0)
 blue = (0,0,200)
 
-class Graphics:
+#  @author Daniel McCoy Stephenson
+#  @since February 3rd, 2022
+class Graphik:
     def __init__(self, gameDisplay):
         self.gameDisplay = gameDisplay
 
@@ -22,7 +24,7 @@ class Graphics:
 
     def drawButton(self, xpos, ypos, width, height, colorBox, colorText, sizeText, text, function):
         self.drawRectangle(xpos, ypos, width, height, colorBox)
-        self.drawText(text, xpos + (width//2), ypos + (height//2), sizeText, white)
+        self.drawText(text, xpos + (width//2), ypos + (height//2), sizeText, colorText)
         
         # if clicked then do function
         mouse = pygame.mouse.get_pos()
