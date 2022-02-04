@@ -1,2 +1,4 @@
 # Rock-Paper-Scissors
-A Rock Paper Scissors Game using Pygame for the GUI (first GUI attempt)
+This application allows the user to play a simple graphical version of Rock Paper Scissors. 
+
+## This project utilizes the free and open source [Graphik](https://github.com/Preponderous-Software/Graphik) library.
