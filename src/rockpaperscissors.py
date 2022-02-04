@@ -1,6 +1,7 @@
 import pygame
 import time
 import random
+from graphics import *
 
 pygame.init()
 
@@ -15,6 +16,8 @@ displayHeight = 600
 
 gameDisplay = pygame.display.set_mode((displayWidth, displayHeight))
 
+graphics = Graphics(gameDisplay)
+
 pygame.display.set_caption("Rock Paper Scissors")
 
 clock = pygame.time.Clock()
@@ -22,27 +25,6 @@ clock = pygame.time.Clock()
 wins = 0
 losses = 0
 ties = 0
-
-def drawRectangle(xpos, ypos, width, height, color):
-    pygame.draw.rect(gameDisplay, color, [xpos, ypos, width, height])
-
-def drawText(text, xpos, ypos, size, color):
-    myFont = pygame.font.Font('freesansbold.ttf', size)
-    textSurface = myFont.render(text, True, color)
-    textRectangle = textSurface.get_rect()
-    textRectangle.center = ((xpos, ypos))
-    gameDisplay.blit(textSurface, textRectangle)
-
-def drawButton(xpos, ypos, width, height, colorBox, colorText, sizeText, text, function):
-    drawRectangle(xpos, ypos, width, height, colorBox)
-    drawText(text, xpos + (width//2), ypos + (height//2), sizeText, white)
-    
-    # if clicked then do function
-    mouse = pygame.mouse.get_pos()
-    if (xpos + width > mouse[0] > xpos and ypos + height > mouse[1] > ypos):
-        click = pygame.mouse.get_pressed()
-        if click[0] == 1:
-            function()
 
 def getComputerChoice():
     randomInt = random.randint(1,4)
@@ -99,15 +81,15 @@ def decisionScreen():
                 quit()
         
             gameDisplay.fill(white)
-            drawText("Rock, Paper, or Scissors?", displayWidth//2, displayHeight//4, 36, black)
+            graphics.drawText("Rock, Paper, or Scissors?", displayWidth//2, displayHeight//4, 36, black)
             middleButtonXPos = displayWidth//2 - 50
-            drawButton(middleButtonXPos - 200, 300, 100, 100, black, white, 15, "Rock", playerChoseRock)
-            drawButton(middleButtonXPos, 300, 100, 100, black, white, 15, "Paper", playerChosePaper)
-            drawButton(middleButtonXPos + 200, 300, 100, 100, black, white, 15, "Scissors", playerChoseScissors)
+            graphics.drawButton(middleButtonXPos - 200, 300, 100, 100, black, white, 15, "Rock", playerChoseRock)
+            graphics.drawButton(middleButtonXPos, 300, 100, 100, black, white, 15, "Paper", playerChosePaper)
+            graphics.drawButton(middleButtonXPos + 200, 300, 100, 100, black, white, 15, "Scissors", playerChoseScissors)
             
-            drawText("Wins: " + str(wins), 50, 25, 15, black)
-            drawText("Losses: " + str(losses), 50, 50, 15, black)
-            drawText("Ties: " + str(ties), 50, 75, 15, black)
+            graphics.drawText("Wins: " + str(wins), 50, 25, 15, black)
+            graphics.drawText("Losses: " + str(losses), 50, 50, 15, black)
+            graphics.drawText("Ties: " + str(ties), 50, 75, 15, black)
             pygame.display.update()
 
 
@@ -123,9 +105,9 @@ def tie(p, c):
                 quit()
         
             gameDisplay.fill(white)
-            drawText("It was a tie!", displayWidth//2, displayHeight//4, 36, black)
-            drawText("Player Choice: " + p, displayWidth//2, displayHeight//2, 36, black)
-            drawText("Computer Choice: " + c, displayWidth//2, displayHeight - displayHeight//4, 36, black)
+            graphics.drawText("It was a tie!", displayWidth//2, displayHeight//4, 36, black)
+            graphics.drawText("Player Choice: " + p, displayWidth//2, displayHeight//2, 36, black)
+            graphics.drawText("Computer Choice: " + c, displayWidth//2, displayHeight - displayHeight//4, 36, black)
             pygame.display.update()
             time.sleep(2)
             running = False
@@ -142,9 +124,9 @@ def win(p, c):
                 quit()
         
             gameDisplay.fill(white)
-            drawText("You win!", displayWidth//2, displayHeight//4, 36, black)
-            drawText("Player Choice: " + p, displayWidth//2, displayHeight//2, 36, black)
-            drawText("Computer Choice: " + c, displayWidth//2, displayHeight - displayHeight//4, 36, black)
+            graphics.drawText("You win!", displayWidth//2, displayHeight//4, 36, black)
+            graphics.drawText("Player Choice: " + p, displayWidth//2, displayHeight//2, 36, black)
+            graphics.drawText("Computer Choice: " + c, displayWidth//2, displayHeight - displayHeight//4, 36, black)
             pygame.display.update()
             time.sleep(2)
             running = False
@@ -161,9 +143,9 @@ def lose(p, c):
                 quit()
         
             gameDisplay.fill(white)
-            drawText("You lost!", displayWidth//2, displayHeight//4, 36, black)
-            drawText("Player Choice: " + p, displayWidth//2, displayHeight//2, 36, black)
-            drawText("Computer Choice: " + c, displayWidth//2, displayHeight - displayHeight//4, 36, black)
+            graphics.drawText("You lost!", displayWidth//2, displayHeight//4, 36, black)
+            graphics.drawText("Player Choice: " + p, displayWidth//2, displayHeight//2, 36, black)
+            graphics.drawText("Computer Choice: " + c, displayWidth//2, displayHeight - displayHeight//4, 36, black)
             pygame.display.update()
             time.sleep(2)
             running = False
